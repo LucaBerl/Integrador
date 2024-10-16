@@ -1,0 +1,183 @@
+//modo.un.jugador
+
+#include <iostream>
+using namespace std;
+#include "modounjugador.h"
+#include <conio.h>
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void mostrarbloqueadores(int bloq[]){
+
+    cout<<"Los bloqueadores son: ";
+    cout<<bloq[0]<<" Y "<<bloq[1];
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+int bloqueadores(int bloq[]){
+
+    cout << endl << "Presione enter para tirar dados bloqueadores ...";
+    system("pause>nul");
+    cout<<endl<<endl;
+
+    bloq[0]= rand() % 6 + 1;
+    bloq[1]= rand() % 6 + 1;
+
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+int tirada (int dados[],int &cantidadDados){
+
+    int i;
+
+    for(i=0;i<cantidadDados;i++){
+
+        dados[i] = rand() % 6 + 1;
+    }
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void mostrarTirada(int dados[],int &cantidadDados){
+
+    int i;
+
+    cout<<endl<<endl<<"DADOS: ";
+
+    for (i=0;i<cantidadDados;i++){
+
+        cout<<dados[i]<<"  ";
+    }
+
+    cout<<endl<<endl;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void mostrarPuntajeTirada (int bloq[],int dados[],int &cantidadDados,int &puntajeTirada,int &puntajeRonda, char &desicion){
+
+    int i;
+    int cont=0;
+
+    for(i=0;i<cantidadDados;i++){
+
+        if(dados[i] != bloq[0] && dados[i] != bloq[1]){
+
+            puntajeTirada += dados[i];
+        }
+    }
+
+    for(i=0;i<cantidadDados;i++){
+
+        if(dados[i] == bloq[0] || dados[i] == bloq[1]){
+
+            cont++;
+
+        }
+    }
+
+    cantidadDados=cantidadDados-cont;
+
+    if (cantidadDados==0){
+
+        puntajeTirada = 0;
+        desicion = 'n';
+        cout<<endl<<"Usted ha perdido todos los puntos"<<endl;
+        return;
+
+    }
+
+    cout<<"------------------------------------------"<<endl;
+    cout<<endl<<"Puntaje de la tirada: "<<puntajeTirada<<endl;
+    cout<<"Cantidad de dados disponibles para proxima tirada: "<<cantidadDados<<endl;
+    cout<<endl<<"------------------------------------------"<<endl;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void Ronda (int bloq[],int dados[],int &cantidadDados,int &puntajeTirada,int &puntajeRonda, char &desicion){
+
+        do{
+        tirada (dados,cantidadDados);
+        mostrarTirada(dados,cantidadDados);
+        mostrarPuntajeTirada(bloq,dados,cantidadDados,puntajeTirada,puntajeRonda,desicion);
+
+            if (desicion == 'n'){
+
+                puntajeRonda=puntajeTirada;
+                break;
+            }
+        cout << endl << endl << "Presione 's' para tirar nuevamente o 'n' para finalizar ronda ...";
+        desicion = getch();
+            if (desicion == 'n'){
+
+                puntajeRonda=puntajeTirada;
+                break;
+            }
+            }while (desicion=='s');
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void mostrarPuntajeTotal (int &puntajeRonda,int &puntajeTotal){
+
+    puntajeTotal += puntajeRonda;
+
+    cout<<endl<<endl<<"PUNTAJE TOTAL: "<<puntajeTotal<<endl;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+void mostrarPuntajeRonda (int &puntajeRonda){
+
+
+    cout<<endl<<endl<<"PUNTAJE DE LA RONDA: "<<puntajeRonda<<endl;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+void modoUnJugador(){
+
+    int i,puntajeRonda=0,puntajeTotal=0;
+    int bloq[2];
+    int dados[5];
+    char desicion;
+
+    for (i=1;i<=3;i++){
+
+        int cantidadDados = 5;
+        int puntajeTirada = 0;
+
+
+        cout<<endl<<"-------------- RONDA "<<i<<" DE 3 --------------"<<endl<<endl;
+        bloqueadores (bloq);
+        mostrarbloqueadores(bloq);
+        cout << endl << endl << "Presione 's' para tirar dados o 'n' para finalizar ronda ...";
+        desicion = getch();
+            if (desicion=='n'){
+
+                puntajeRonda=puntajeTirada;
+                break;
+            }
+        cout<<endl;
+        Ronda(bloq,dados,cantidadDados,puntajeTirada,puntajeRonda,desicion);
+        mostrarPuntajeRonda(puntajeRonda);
+        mostrarPuntajeTotal(puntajeRonda,puntajeTotal);
+    }
+
+}
