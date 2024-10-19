@@ -157,7 +157,7 @@ void Ronda (int bloq[],int dados[],int &cantidadDados,int &puntajeTirada,int &pu
                 puntajeRonda=puntajeTirada;
                 break;
             }
-        if (sonTodosIguales == false){  //estoy llamando a la funcion con la cantidad de dados descontada!!
+        if (sonTodosIguales == false){
             cout << endl << endl << "Presione 's' para tirar nuevamente o 'n' para finalizar ronda ...";
             desicion = getch();
                 if (desicion == 'n'){
@@ -200,6 +200,12 @@ void mostrarPuntajeRonda (int &puntajeRonda){
 
 //----------------------------------------------------------------------------------------------------------------------
 
+void mostrarNombreJugador (string nombreJugador){
+
+    cout<<endl<<endl<<"------------------------------------------------";
+    cout<<endl<<endl<<"Jugador: "<<nombreJugador<<endl;
+
+}
 
 
 
@@ -212,6 +218,10 @@ void modoUnJugador(){
     int dados[5];
     char desicion;
     bool sonTodosIguales = false;
+    string nombreJugador;
+
+    cout << endl<<" Ingrese nombre: ";
+    cin >> nombreJugador;
 
 
     for (i=1;i<=3;i++){
@@ -232,11 +242,18 @@ void modoUnJugador(){
             }
         cout<<endl;
         Ronda(bloq,dados,cantidadDados,puntajeTirada,puntajeRonda,desicion,sonTodosIguales);
+        mostrarNombreJugador(nombreJugador);
         mostrarPuntajeRonda(puntajeRonda);
         mostrarPuntajeTotal(puntajeRonda,puntajeTotal);
     }
 
+
+    cout<<endl<<endl<<"Juego finalizado, acumulaste un total de: "<<puntajeTotal<<" puntos"<<endl;
+
 }
+
+
+
 
 
 
