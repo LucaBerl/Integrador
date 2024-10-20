@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+#include "modounjugador.h"
+#include "mododosjugadores.h"
+#include <conio.h>
+
+
+void modoDosJugadores(){
+
+
+    int i,puntajeRondaJugador1 = 0 , puntajeRondaJugador2 = 0, puntajeTotalJugador1 = 0, puntajeTotalJugador2 = 0;
+    int bloq[2];
+    int dados[5];
+    char desicion;
+    bool sonTodosIguales = false;
+    string nombreJugador1, nombreJugador2;
+
+        cout << endl<<" Ingrese nombre Jugador N° 1: ";
+        cin >> nombreJugador1;
+        cout << endl<<" Ingrese nombre Jugador N° 2: ";
+        cin >> nombreJugador2;
+
+
+
+        for (i=1;i<=3;i++){
+
+            int cantidadDadosJugador1 = 5, cantidadDadosJugador2 = 5;
+            int puntajeTiradaJugador1 = 0, puntajeTiradaJugador2 = 0;
+
+            cout<<endl<<"----------------- RONDA "<<i<<" DE 3 -----------------"<<endl<<endl;
+            cout<<endl<<endl<<"Jugador: "<<nombreJugador1<<endl;
+            bloqueadores (bloq);
+            mostrarbloqueadores(bloq);
+            cout << endl << endl << "Presione 's' para tirar dados o 'n' para finalizar ronda ...";
+            desicion = getch();
+                if (desicion=='n'){
+
+                puntajeRondaJugador1=puntajeTiradaJugador1;
+                break;
+                }
+            cout<<endl;
+            Ronda(bloq,dados,cantidadDadosJugador1,puntajeTiradaJugador1,puntajeRondaJugador1,desicion,sonTodosIguales);
+
+
+
+
+
+
+
+            cout<<endl<<"----------------- RONDA "<<i<<" DE 3 -----------------"<<endl<<endl;
+            cout<<endl<<endl<<"Jugador: "<<nombreJugador2<<endl;
+            bloqueadores (bloq);
+            mostrarbloqueadores(bloq);
+            cout << endl << endl << "Presione 's' para tirar dados o 'n' para finalizar ronda ...";
+            desicion = getch();
+                if (desicion=='n'){
+
+                puntajeRondaJugador2=puntajeTiradaJugador2;
+                break;
+                }
+            cout<<endl;
+            Ronda(bloq,dados,cantidadDadosJugador2,puntajeTiradaJugador2,puntajeRondaJugador2,desicion,sonTodosIguales);
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+}
+
+
