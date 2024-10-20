@@ -5,6 +5,8 @@ using namespace std;
 #include <conio.h>
 
 
+
+
 void modoDosJugadores(){
 
 
@@ -40,11 +42,12 @@ void modoDosJugadores(){
                 }
             cout<<endl;
             Ronda(bloq,dados,cantidadDadosJugador1,puntajeTiradaJugador1,puntajeRondaJugador1,desicion,sonTodosIguales);
+            cout<<endl<<endl<<"Jugador N° 1: "<<nombreJugador1<<endl;
+            mostrarPuntajeRonda(puntajeRondaJugador1);
+            mostrarPuntajeTotal(puntajeRondaJugador1,puntajeTotalJugador1);
 
 
-
-
-
+            //----------------------------------------------------------------------------------------------------------
 
 
             cout<<endl<<"----------------- RONDA "<<i<<" DE 3 -----------------"<<endl<<endl;
@@ -60,20 +63,23 @@ void modoDosJugadores(){
                 }
             cout<<endl;
             Ronda(bloq,dados,cantidadDadosJugador2,puntajeTiradaJugador2,puntajeRondaJugador2,desicion,sonTodosIguales);
-
-
-
-
-
-
-
-
+            cout<<endl<<endl<<"Jugador N° 2: "<<nombreJugador2<<endl;
+            mostrarPuntajeRonda(puntajeRondaJugador2);
+            mostrarPuntajeTotal(puntajeRondaJugador2,puntajeTotalJugador2);
 
 
 
         }
 
+        cout << endl << "----------------------------------------------------------------------------";
 
+        cout << endl << endl << endl << "                                Juego finalizado!!" << endl;
+
+        cout << endl << "                         Puntaje final de ambos jugadores "<<endl;
+
+        cout << endl << "                    Jugador N° 1 " << nombreJugador1 << "        " << " Jugador N° 2: " << nombreJugador2 << endl;
+
+        cout << endl << "                           " <<  puntajeTotalJugador1 << "                       " << puntajeTotalJugador2 << endl << endl;
 
 
 }
