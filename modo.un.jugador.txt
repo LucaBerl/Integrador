@@ -2,6 +2,10 @@
 using namespace std;
 #include "modounjugador.h"
 #include <conio.h>
+#include <ctime>
+#include "rlutil.h"
+
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -82,7 +86,7 @@ void mostrarPuntajeTirada (int bloq[],int dados[],int &cantidadDados,int &puntaj
 
     sonTodosIguales = todosIguales(bloq,dados,cantidadDados);
 
-    cantidadDados=cantidadDados-cont;
+    cantidadDados = cantidadDados-cont;
 
     if (cantidadDados==0){
 
@@ -162,7 +166,7 @@ void Ronda (int bloq[],int dados[],int &cantidadDados,int &puntajeTirada,int &pu
             desicion = getch();
                 if (desicion == 'n'){
 
-                    puntajeRonda=puntajeTirada;
+                    puntajeRonda = puntajeTirada;
                     break;
                 }
         }
@@ -203,9 +207,13 @@ void mostrarPuntajeRonda (int &puntajeRonda){
 void mostrarNombreJugador (string nombreJugador){
 
     cout<<endl<<endl<<"------------------------------------------------";
+    rlutil::setColor(rlutil::RED);
     cout<<endl<<endl<<"Jugador: "<<nombreJugador<<endl;
+    rlutil::setColor(rlutil::BLACK);
 
 }
+
+
 
 
 
@@ -219,6 +227,8 @@ void modoUnJugador(){
     char desicion;
     bool sonTodosIguales = false;
     string nombreJugador;
+
+    system("cls");
 
     cout << endl<<" Ingrese nombre: ";
     cin >> nombreJugador;
